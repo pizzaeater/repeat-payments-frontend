@@ -6,7 +6,7 @@ import { dayToString } from '../../models/Day';
 import DayOccurrence, { sortDayOccurrencesChronologically } from '../../models/DayOccurrence';
 import { doesTimeRangeIncludesDate, extendTimeRange, timeRangeFromDays } from '../../models/TimeRange';
 import { repeatablesToDayOccurrencesInTimeRange, repeatablesToFindNextDay } from '../../models/Repeatable';
-import CalendarDay from '../CalendarDay/CalendarDay';
+import CalendarDay from '../CalendarDay';
 import './App.scss';
 import data from '../../.local/data.json';
 
