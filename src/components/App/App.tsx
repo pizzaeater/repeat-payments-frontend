@@ -6,7 +6,7 @@ import { dayToString } from '../../models/Day';
 import DayOccurrence, { sortDayOccurrencesChronologically } from '../../models/DayOccurrence';
 import { doesTimeRangeIncludesDate, extendTimeRange, timeRangeFromDays } from '../../models/TimeRange';
 import { repeatablesToDayOccurrencesInTimeRange, repeatablesToFindNextDay } from '../../models/Repeatable';
-import './App.css';
+import './App.scss';
 import data from '../../.local/data.json';
 
 // TODO: Show calendar like items!? Big day and 3 letters month
