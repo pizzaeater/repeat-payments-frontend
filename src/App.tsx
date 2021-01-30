@@ -1,5 +1,4 @@
 import React from 'react';
-import data from './.local/data.json';
 import Today from './models/Today';
 import Expense from './models/Expense';
 import Income from './models/Income';
@@ -8,6 +7,7 @@ import DayOccurrence, { sortDayOccurrencesChronologically } from './models/DayOc
 import { doesTimeRangeIncludesDate, extendTimeRange, timeRangeFromDays } from './models/TimeRange';
 import { repeatablesToDayOccurrencesInTimeRange, repeatablesToFindNextDay } from './models/Repeatable';
 import './App.css';
+import data from './.local/data.json';
 
 // TODO: Show calendar like items!? Big day and 3 letters month
 

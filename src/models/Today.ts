@@ -1,5 +1,5 @@
-import DayOccurrence from './DayOccurrence';
 import Day from './Day';
+import DayOccurrence from './DayOccurrence';
 
 export default class Today implements DayOccurrence {
   readonly weight = 3;
