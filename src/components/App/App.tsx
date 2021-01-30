@@ -6,6 +6,7 @@ import { dayToString } from '../../models/Day';
 import DayOccurrence, { sortDayOccurrencesChronologically } from '../../models/DayOccurrence';
 import { doesTimeRangeIncludesDate, extendTimeRange, timeRangeFromDays } from '../../models/TimeRange';
 import { repeatablesToDayOccurrencesInTimeRange, repeatablesToFindNextDay } from '../../models/Repeatable';
+import CalendarDay from '../CalendarDay/CalendarDay';
 import './App.css';
 import data from '../../.local/data.json';
 
@@ -48,14 +49,15 @@ const App = () => {
 
   return (
     <div className="App">
-      <ul>
+      <CalendarDay />
+      {/* <ul>
         {occurrences.map((occurrence, i) => (
           <li key={i}>
             {getItemRenderer(occurrence, totalExpensesBeforeNextIncome)}
           </li>
         ))}
       </ul>
-      <button onClick={showMoreButtonClickHandler}>Show 1 week more...</button>
+      <button onClick={showMoreButtonClickHandler}>Show 1 week more...</button> */}
     </div>
   );
 };
