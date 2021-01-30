@@ -3,6 +3,8 @@
 }
 
 .CalendarDay {
+  margin-bottom: 3rem;
+
   width: 7rem;
   height: 7rem;
   display: flex;
@@ -18,7 +20,7 @@
   align-items: center;
   justify-content: center;
   font-size: 2rem;
-  background-color: #2F81B8;
+  background-color: black;
   color: white;
 }
 
