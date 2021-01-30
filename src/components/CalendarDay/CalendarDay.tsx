@@ -1,4 +1,4 @@
-import './CalendarDay.css';
+import './CalendarDay.scss';
 
 const CalendarDay = () => (
   <div className="CalendarDay">
