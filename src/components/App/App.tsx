@@ -79,7 +79,7 @@ const getItemRenderer = (occurrence: DayOccurrence, totalExpensesBeforeNextIncom
 
   if (occurrence instanceof Income) {
     const income = occurrence as Income;
-    return <h3 style={{ color: 'green' }}><CalendarDay date={income.day.date} type="income" inactive={false} /> {income.name}</h3>
+    return <h3 style={{ color: 'green' }}><CalendarDay date={income.day.date} type="income" inactive={!income.isAccented} /> {income.name}</h3>
   }
 
   return undefined;
