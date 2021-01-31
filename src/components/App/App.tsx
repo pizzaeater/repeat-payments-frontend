@@ -27,9 +27,10 @@ const App = () => {
       return new Expense(day, expense.name, expense.price, isAccented);
     });
 
-    const incomes = repeatablesToDayOccurrencesInTimeRange(data.incomes, timeRange, (income, day) => (
-      new Income(day, income.name)
-    ));
+    const incomes = repeatablesToDayOccurrencesInTimeRange(data.incomes, timeRange, (income, day) => {
+      const isAccented = doesTimeRangeIncludesDate(day.date, timeRangeBeforeNextIncome);
+      return new Income(day, income.name, isAccented);
+    });
 
     setTotalExpensesBeforeNextIncome(
       expenses
@@ -47,7 +48,7 @@ const App = () => {
   };
 
   return (
-    <div className="App">
+    <div className="App"> {/*TODO: Use cn()*/}
       <ul>
         {occurrences.map((occurrence, i) => (
           <li key={i}>
