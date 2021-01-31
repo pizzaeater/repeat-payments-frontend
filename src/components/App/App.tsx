@@ -2,10 +2,10 @@ import React from 'react';
 import Today from '../../models/Today';
 import Expense from '../../models/Expense';
 import Income from '../../models/Income';
-import { dayToString } from '../../models/Day';
 import DayOccurrence, { sortDayOccurrencesChronologically } from '../../models/DayOccurrence';
 import { doesTimeRangeIncludesDate, extendTimeRange, timeRangeFromDays } from '../../models/TimeRange';
 import { repeatablesToDayOccurrencesInTimeRange, repeatablesToFindNextDay } from '../../models/Repeatable';
+import CalendarDay from '../CalendarDay';
 import './App.scss';
 import data from '../../.local/data.json';
 
@@ -66,20 +66,20 @@ export default App;
 const getItemRenderer = (occurrence: DayOccurrence, totalExpensesBeforeNextIncome: number): React.ReactNode => {
   if (occurrence instanceof Today) {
     const today = occurrence as Today;
-    return <h2>{dayToString(today.day)} TODAY (need to have {totalExpensesBeforeNextIncome.toFixed(2)})</h2>
+    return <h2><CalendarDay date={today.day.date} type="today" /> TODAY (need to have {totalExpensesBeforeNextIncome.toFixed(2)})</h2>
   }
 
   if (occurrence instanceof Expense) {
     const expense = occurrence as Expense;
-    return <p style={{
+    return <div style={{
       color: expense.isAccented ? 'darkred' : 'gray',
       background: expense.isAccented ? '#fee' : 'none'
-    }}>{dayToString(expense.day)} {expense.name} -{expense.price.toFixed(2)}</p>
+    }}><CalendarDay date={expense.day.date} type="expense" inactive={!expense.isAccented} /> {expense.name} -{expense.price.toFixed(2)}</div>
   }
 
   if (occurrence instanceof Income) {
     const income = occurrence as Income;
-    return <h3 style={{ color: 'green' }}>{dayToString(income.day)} {income.name}</h3>
+    return <h3 style={{ color: 'green' }}><CalendarDay date={income.day.date} type="income" inactive={!income.isAccented} /> {income.name}</h3>
   }
 
   return undefined;

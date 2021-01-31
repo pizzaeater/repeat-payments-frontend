@@ -1,0 +1,55 @@
+.CalendarDay {
+  margin-bottom: 3rem;
+
+  width: 7rem;
+  height: 7rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: rgba(black, 0.5) 0 0.1rem 0.2rem;
+}
+
+.CalendarDay__month {
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  font-size: 2rem;
+  font-weight: normal;
+  line-height: 0;
+}
+
+.CalendarDay__month_type_today {
+  background-color: #2F81B8;
+}
+
+.CalendarDay__month_type_income {
+  background-color: #30AD63;
+}
+
+.CalendarDay__month_type_expense {
+  background-color: #E64E42;
+}
+
+.CalendarDay__month_type_inactive {
+  background-color: #BEC4C8;
+}
+
+.CalendarDay__day {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: black;
+  font-size: 4rem;
+  font-weight: normal;
+  line-height: 0;
+}
+
+.CalendarDay__day_inactive {
+  color: #808C8D;
+}
