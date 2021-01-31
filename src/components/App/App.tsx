@@ -2,7 +2,6 @@ import React from 'react';
 import Today from '../../models/Today';
 import Expense from '../../models/Expense';
 import Income from '../../models/Income';
-import { dayToString } from '../../models/Day';
 import DayOccurrence, { sortDayOccurrencesChronologically } from '../../models/DayOccurrence';
 import { doesTimeRangeIncludesDate, extendTimeRange, timeRangeFromDays } from '../../models/TimeRange';
 import { repeatablesToDayOccurrencesInTimeRange, repeatablesToFindNextDay } from '../../models/Repeatable';
@@ -49,18 +48,14 @@ const App = () => {
 
   return (
     <div className="App">
-      <CalendarDay date={new Date()} type="today" />
-      <CalendarDay date={new Date()} type="expense" />
-      <CalendarDay date={new Date()} type="income" />
-      <CalendarDay date={new Date(2021, 5, 1)} type="inactive" />
-      {/* <ul>
+      <ul>
         {occurrences.map((occurrence, i) => (
           <li key={i}>
             {getItemRenderer(occurrence, totalExpensesBeforeNextIncome)}
           </li>
         ))}
       </ul>
-      <button onClick={showMoreButtonClickHandler}>Show 1 week more...</button> */}
+      <button onClick={showMoreButtonClickHandler}>Show 1 week more...</button>
     </div>
   );
 };
@@ -70,7 +65,7 @@ export default App;
 const getItemRenderer = (occurrence: DayOccurrence, totalExpensesBeforeNextIncome: number): React.ReactNode => {
   if (occurrence instanceof Today) {
     const today = occurrence as Today;
-    return <h2>{dayToString(today.day)} TODAY (need to have {totalExpensesBeforeNextIncome.toFixed(2)})</h2>
+    return <h2><CalendarDay date={today.day.date} type="today" /> TODAY (need to have {totalExpensesBeforeNextIncome.toFixed(2)})</h2>
   }
 
   if (occurrence instanceof Expense) {
@@ -78,12 +73,12 @@ const getItemRenderer = (occurrence: DayOccurrence, totalExpensesBeforeNextIncom
     return <p style={{
       color: expense.isAccented ? 'darkred' : 'gray',
       background: expense.isAccented ? '#fee' : 'none'
-    }}>{dayToString(expense.day)} {expense.name} -{expense.price.toFixed(2)}</p>
+    }}><CalendarDay date={expense.day.date} type={expense.isAccented ? 'expense' : 'inactive'} /> {expense.name} -{expense.price.toFixed(2)}</p>
   }
 
   if (occurrence instanceof Income) {
     const income = occurrence as Income;
-    return <h3 style={{ color: 'green' }}>{dayToString(income.day)} {income.name}</h3>
+    return <h3 style={{ color: 'green' }}><CalendarDay date={income.day.date} type="income" /> {income.name}</h3>
   }
 
   return undefined;
