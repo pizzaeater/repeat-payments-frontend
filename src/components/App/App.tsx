@@ -49,10 +49,10 @@ const App = () => {
 
   return (
     <div className="App">
-      <CalendarDay date={new Date()} color="#2F81B8" inactive={false} />
-      <CalendarDay date={new Date()} color="red" inactive={true} />
-      <CalendarDay date={new Date()} color="gray" inactive={false} />
-      <CalendarDay date={new Date(2021, 5, 1)} color="green" inactive={true} />
+      <CalendarDay date={new Date()} type="today" />
+      <CalendarDay date={new Date()} type="expense" />
+      <CalendarDay date={new Date()} type="income" />
+      <CalendarDay date={new Date(2021, 5, 1)} type="inactive" />
       {/* <ul>
         {occurrences.map((occurrence, i) => (
           <li key={i}>

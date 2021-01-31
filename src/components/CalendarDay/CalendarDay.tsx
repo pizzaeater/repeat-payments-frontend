@@ -3,18 +3,19 @@ import './CalendarDay.scss';
 
 interface Props {
   date: Date
-  color: string
-  inactive: boolean
+  type: 'today' | 'income' | 'expense' | 'inactive'
 }
 
-const CalendarDay: React.FC<Props> = ({ date, color, inactive }) => {
-  const dayClassSet = inactive
+const CalendarDay: React.FC<Props> = ({ date, type }) => {
+  const dayClassSet = type === 'inactive'
     ? 'CalendarDay__day CalendarDay__day_inactive'
     : 'CalendarDay__day';
 
+  const monthMod = `CalendarDay__month_type_${type}`;
+
   return (
     <div className="CalendarDay">
-      <div className="CalendarDay__month" style={{ background: color }}>{date.toLocaleString('default', { month: 'short'}).toLocaleUpperCase()}</div>
+      <div className={`CalendarDay__month ${monthMod}`}>{date.toLocaleString('default', { month: 'short'}).toLocaleUpperCase()}</div>
       <div className={dayClassSet}>{date.getDate()}</div>
     </div>
   )
