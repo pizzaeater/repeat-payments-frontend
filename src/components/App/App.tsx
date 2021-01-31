@@ -52,7 +52,7 @@ const App = () => {
       <CalendarDay date={new Date()} color="#2F81B8" inactive={false} />
       <CalendarDay date={new Date()} color="red" inactive={true} />
       <CalendarDay date={new Date()} color="gray" inactive={false} />
-      <CalendarDay date={new Date()} color="green" inactive={true} />
+      <CalendarDay date={new Date(2021, 5, 1)} color="green" inactive={true} />
       {/* <ul>
         {occurrences.map((occurrence, i) => (
           <li key={i}>

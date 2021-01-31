@@ -14,8 +14,8 @@ const CalendarDay: React.FC<Props> = ({ date, color, inactive }) => {
 
   return (
     <div className="CalendarDay">
-      <div className="CalendarDay__month" style={{ background: color }}>NOV</div>
-      <div className={dayClassSet}>3</div>
+      <div className="CalendarDay__month" style={{ background: color }}>{date.toLocaleString('default', { month: 'short'}).toLocaleUpperCase()}</div>
+      <div className={dayClassSet}>{date.getDate()}</div>
     </div>
   )
 };
