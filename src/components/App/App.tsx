@@ -65,7 +65,7 @@ export default App;
 const getItemRenderer = (occurrence: DayOccurrence, totalExpensesBeforeNextIncome: number): React.ReactNode => {
   if (occurrence instanceof Today) {
     const today = occurrence as Today;
-    return <h2><CalendarDay date={today.day.date} type="today" inactive={false} /> TODAY (need to have {totalExpensesBeforeNextIncome.toFixed(2)})</h2>
+    return <h2><CalendarDay date={today.day.date} type="today" /> TODAY (need to have {totalExpensesBeforeNextIncome.toFixed(2)})</h2>
   }
 
   if (occurrence instanceof Expense) {
