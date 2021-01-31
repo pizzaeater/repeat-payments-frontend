@@ -6,6 +6,7 @@ import DayOccurrence, { sortDayOccurrencesChronologically } from '../../models/D
 import { doesTimeRangeIncludesDate, extendTimeRange, timeRangeFromDays } from '../../models/TimeRange';
 import { repeatablesToDayOccurrencesInTimeRange, repeatablesToFindNextDay } from '../../models/Repeatable';
 import CalendarDay from '../CalendarDay';
+import Panel from '../Panel';
 import './App.scss';
 import data from '../../.local/data.json';
 
@@ -71,10 +72,10 @@ const getItemRenderer = (occurrence: DayOccurrence, totalExpensesBeforeNextIncom
 
   if (occurrence instanceof Expense) {
     const expense = occurrence as Expense;
-    return <div style={{
-      color: expense.isAccented ? 'darkred' : 'gray',
-      background: expense.isAccented ? '#fee' : 'none'
-    }}><CalendarDay date={expense.day.date} type="expense" inactive={!expense.isAccented} /> {expense.name} -{expense.price.toFixed(2)}</div>
+    return <Panel inactive={!expense.isAccented} >
+      <CalendarDay date={expense.day.date} type="expense" inactive={!expense.isAccented} />
+      {expense.name} -{expense.price.toFixed(2)}
+    </Panel>
   }
 
   if (occurrence instanceof Income) {
