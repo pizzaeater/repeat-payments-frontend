@@ -12,7 +12,7 @@ import data from '../../.local/data.json';
 // TODO: Show calendar like items!? Big day and 3 letters month
 
 const App = () => {
-  const [occurrences, setOccurrences] = React.useState<DayOccurrence[]>([]);
+  const [items, setItems] = React.useState<any[]>([]);
   const [totalExpensesBeforeNextIncome, setTotalExpensesBeforeNextIncome] = React.useState<number>(0);
   const [weeksAfter, setWeeksAfter] = React.useState<number>(1);
 
@@ -38,7 +38,7 @@ const App = () => {
         .reduce((total, expense) => total + expense.price, 0)
     );
 
-    setOccurrences(
+    setItems(
       [today, ...expenses, ...incomes].sort(sortDayOccurrencesChronologically)
     );
   }, [weeksAfter]);
@@ -50,9 +50,9 @@ const App = () => {
   return (
     <div className="App"> {/*TODO: Use cn()*/}
       <ul>
-        {occurrences.map((occurrence, i) => (
+        {items.map((item, i) => (
           <li key={i}>
-            {getItemRenderer(occurrence, totalExpensesBeforeNextIncome)}
+            {getItemRenderer(item, totalExpensesBeforeNextIncome)}
           </li>
         ))}
       </ul>
@@ -63,22 +63,22 @@ const App = () => {
 
 export default App;
 
-const getItemRenderer = (occurrence: DayOccurrence, totalExpensesBeforeNextIncome: number): React.ReactNode => {
-  if (occurrence instanceof Today) {
-    const today = occurrence as Today;
+const getItemRenderer = (item: any, totalExpensesBeforeNextIncome: number): React.ReactNode => {
+  if (item instanceof Today) {
+    const today = item as Today;
     return <h2><CalendarDay date={today.day.date} type="today" /> TODAY (need to have {totalExpensesBeforeNextIncome.toFixed(2)})</h2>
   }
 
-  if (occurrence instanceof Expense) {
-    const expense = occurrence as Expense;
+  if (item instanceof Expense) {
+    const expense = item as Expense;
     return <div style={{
       color: expense.isAccented ? 'darkred' : 'gray',
       background: expense.isAccented ? '#fee' : 'none'
     }}><CalendarDay date={expense.day.date} type="expense" inactive={!expense.isAccented} /> {expense.name} -{expense.price.toFixed(2)}</div>
   }
 
-  if (occurrence instanceof Income) {
-    const income = occurrence as Income;
+  if (item instanceof Income) {
+    const income = item as Income;
     return <h3 style={{ color: 'green' }}><CalendarDay date={income.day.date} type="income" inactive={!income.isAccented} /> {income.name}</h3>
   }
 
