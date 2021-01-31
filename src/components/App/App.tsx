@@ -70,10 +70,10 @@ const getItemRenderer = (occurrence: DayOccurrence, totalExpensesBeforeNextIncom
 
   if (occurrence instanceof Expense) {
     const expense = occurrence as Expense;
-    return <p style={{
+    return <div style={{
       color: expense.isAccented ? 'darkred' : 'gray',
       background: expense.isAccented ? '#fee' : 'none'
-    }}><CalendarDay date={expense.day.date} type="expense" inactive={!expense.isAccented} /> {expense.name} -{expense.price.toFixed(2)}</p>
+    }}><CalendarDay date={expense.day.date} type="expense" inactive={!expense.isAccented} /> {expense.name} -{expense.price.toFixed(2)}</div>
   }
 
   if (occurrence instanceof Income) {
