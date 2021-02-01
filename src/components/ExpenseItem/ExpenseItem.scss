@@ -1,0 +1,18 @@
+.ExpenseItem {
+  display: flex;
+  align-items: center;
+}
+
+.ExpenseItem_inactive {
+  color: #808C8D;
+}
+
+.ExpenseItem__text {
+  flex-grow: 1;
+  padding: 0 2.8rem;
+  font-size: 4rem;
+}
+
+.ExpenseItem__amount {
+  font-size: 4rem;
+}
