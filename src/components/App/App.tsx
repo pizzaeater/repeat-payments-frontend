@@ -1,15 +1,17 @@
 import React from 'react';
+import { createCn } from 'bem-react-classname';
 import Today from '../../models/Today';
 import Expense from '../../models/Expense';
 import Income from '../../models/Income';
-import DayOccurrence, { sortDayOccurrencesChronologically } from '../../models/DayOccurrence';
+import MonthSeparator from '../../models/MonthSeparator';
+import { sortDayOccurrencesChronologically } from '../../models/DayOccurrence';
 import { doesTimeRangeIncludesDate, extendTimeRange, timeRangeFromDays } from '../../models/TimeRange';
 import { repeatablesToDayOccurrencesInTimeRange, repeatablesToFindNextDay } from '../../models/Repeatable';
 import CalendarDay from '../CalendarDay';
 import './App.scss';
 import data from '../../.local/data.json';
 
-// TODO: Show calendar like items!? Big day and 3 letters month
+const cn = createCn('App');
 
 const App = () => {
   const [items, setItems] = React.useState<any[]>([]);
@@ -38,9 +40,17 @@ const App = () => {
         .reduce((total, expense) => total + expense.price, 0)
     );
 
-    setItems(
-      [today, ...expenses, ...incomes].sort(sortDayOccurrencesChronologically)
-    );
+    const items = [today, ...expenses, ...incomes]
+      .sort(sortDayOccurrencesChronologically)
+      .flatMap((occurrence, i, arr) => {
+        if (i === 0 || arr[i - 1].day.date.getMonth() === occurrence.day.date.getMonth()) {
+          return [occurrence];
+        }
+
+        return [new MonthSeparator(occurrence.day), occurrence];
+      });
+
+    setItems(items);
   }, [weeksAfter]);
 
   const showMoreButtonClickHandler = () => {
@@ -48,7 +58,7 @@ const App = () => {
   };
 
   return (
-    <div className="App"> {/*TODO: Use cn()*/}
+    <div className={cn()}>
       <ul>
         {items.map((item, i) => (
           <li key={i}>
@@ -80,6 +90,11 @@ const getItemRenderer = (item: any, totalExpensesBeforeNextIncome: number): Reac
   if (item instanceof Income) {
     const income = item as Income;
     return <h3 style={{ color: 'green' }}><CalendarDay date={income.day.date} type="income" inactive={!income.isAccented} /> {income.name}</h3>
+  }
+
+  if (item instanceof MonthSeparator) {
+    const separator = item as MonthSeparator;
+    return <h1 style={{ background: 'yellow' }}>-- {separator.monthStartDay.date.toLocaleString('default', { month: 'long', year: 'numeric' })} --</h1>
   }
 
   return undefined;
