@@ -13,8 +13,11 @@ interface Props {
 
 const ExpenseItem: React.FC<Props> = ({ expense }) => (
   <Panel inactive={!expense.isAccented}>
-    <CalendarDay date={expense.day.date} type="expense" inactive={!expense.isAccented} />
-    {expense.name} -{expense.price.toFixed(2)}
+    <div className={cn({ inactive: !expense.isAccented })}>
+      <CalendarDay date={expense.day.date} type="expense" inactive={!expense.isAccented} />
+      <div className={cn('text')}>{expense.name}</div>
+      <div className={cn('amount')}>{expense.price.toFixed(2)} €</div>
+    </div>
   </Panel>
 );
 
