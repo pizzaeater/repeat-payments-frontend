@@ -4,7 +4,7 @@ import Today from '../../models/Today';
 import Expense from '../../models/Expense';
 import Income from '../../models/Income';
 import MonthSeparator from '../../models/MonthSeparator';
-import { sortDayOccurrencesChronologically } from '../../models/DayOccurrence';
+import DayOccurrence, { sortDayOccurrencesChronologically } from '../../models/DayOccurrence';
 import { doesTimeRangeIncludesDate, extendTimeRange, timeRangeFromDays } from '../../models/TimeRange';
 import { repeatablesToDayOccurrencesInTimeRange, repeatablesToFindNextDay } from '../../models/Repeatable';
 import CalendarDay from '../CalendarDay';
@@ -14,7 +14,7 @@ import data from '../../.local/data.json';
 const cn = createCn('App');
 
 const App = () => {
-  const [items, setItems] = React.useState<any[]>([]);
+  const [items, setItems] = React.useState<(DayOccurrence | MonthSeparator)[]>([]);
   const [totalExpensesBeforeNextIncome, setTotalExpensesBeforeNextIncome] = React.useState<number>(0);
   const [weeksAfter, setWeeksAfter] = React.useState<number>(1);
 
@@ -73,7 +73,7 @@ const App = () => {
 
 export default App;
 
-const getItemRenderer = (item: any, totalExpensesBeforeNextIncome: number): React.ReactNode => {
+const getItemRenderer = (item: DayOccurrence | MonthSeparator, totalExpensesBeforeNextIncome: number): React.ReactNode => {
   if (item instanceof Today) {
     const today = item as Today;
     return <h2><CalendarDay date={today.day.date} type="today" /> TODAY (need to have {totalExpensesBeforeNextIncome.toFixed(2)})</h2>
