@@ -7,7 +7,7 @@ import { doesTimeRangeIncludesDate, extendTimeRange, timeRangeFromDays } from '.
 import { repeatablesToDayOccurrencesInTimeRange, repeatablesToFindNextDay } from '../../models/Repeatable';
 import ExpenseItem from '../ExpenseItem';
 import IncomeItem from '../IncomeItem';
-import CalendarDay from '../CalendarDay';
+import TodayItem from '../TodayItem';
 import './App.scss';
 import data from '../../.local/data.json';
 
@@ -67,8 +67,7 @@ export default App;
 
 const getItemRenderer = (occurrence: DayOccurrence, totalExpensesBeforeNextIncome: number): React.ReactNode => {
   if (occurrence instanceof Today) {
-    const today = occurrence as Today;
-    return <h2><CalendarDay date={today.day.date} type="today" /> TODAY (need to have {totalExpensesBeforeNextIncome.toFixed(2)})</h2>
+    return <TodayItem today={occurrence as Today} amount={totalExpensesBeforeNextIncome} />
   }
 
   if (occurrence instanceof Expense) {
