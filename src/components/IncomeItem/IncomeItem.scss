@@ -1,0 +1,14 @@
+.IncomeItem {
+  display: flex;
+  align-items: center;
+}
+
+.IncomeItem_inactive {
+  color: #808C8D;
+}
+
+.IncomeItem__text {
+  flex-grow: 1;
+  padding: 0 2.8rem;
+  font-size: 4rem;
+}
