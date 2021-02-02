@@ -7,7 +7,9 @@ import MonthSeparator from '../../models/MonthSeparator';
 import DayOccurrence, { sortDayOccurrencesChronologically } from '../../models/DayOccurrence';
 import { doesTimeRangeIncludesDate, extendTimeRange, timeRangeFromDays } from '../../models/TimeRange';
 import { repeatablesToDayOccurrencesInTimeRange, repeatablesToFindNextDay } from '../../models/Repeatable';
-import CalendarDay from '../CalendarDay';
+import ExpenseItem from '../ExpenseItem';
+import IncomeItem from '../IncomeItem';
+import TodayItem from '../TodayItem';
 import './App.scss';
 import data from '../../.local/data.json';
 
@@ -73,23 +75,17 @@ const App = () => {
 
 export default App;
 
-const getItemRenderer = (item: DayOccurrence | MonthSeparator, totalExpensesBeforeNextIncome: number): React.ReactNode => {
-  if (item instanceof Today) {
-    const today = item as Today;
-    return <h2><CalendarDay date={today.day.date} type="today" /> TODAY (need to have {totalExpensesBeforeNextIncome.toFixed(2)})</h2>
+const getItemRenderer = (occurrence: DayOccurrence, totalExpensesBeforeNextIncome: number): React.ReactNode => {
+  if (occurrence instanceof Today) {
+    return <TodayItem today={occurrence as Today} amount={totalExpensesBeforeNextIncome} />
   }
 
-  if (item instanceof Expense) {
-    const expense = item as Expense;
-    return <div style={{
-      color: expense.isAccented ? 'darkred' : 'gray',
-      background: expense.isAccented ? '#fee' : 'none'
-    }}><CalendarDay date={expense.day.date} type="expense" inactive={!expense.isAccented} /> {expense.name} -{expense.price.toFixed(2)}</div>
+  if (occurrence instanceof Expense) {
+    return <ExpenseItem expense={occurrence as Expense} />
   }
 
-  if (item instanceof Income) {
-    const income = item as Income;
-    return <h3 style={{ color: 'green' }}><CalendarDay date={income.day.date} type="income" inactive={!income.isAccented} /> {income.name}</h3>
+  if (occurrence instanceof Income) {
+    return <IncomeItem income={occurrence as Income} />
   }
 
   if (item instanceof MonthSeparator) {
