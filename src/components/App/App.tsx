@@ -75,17 +75,17 @@ const App = () => {
 
 export default App;
 
-const getItemRenderer = (occurrence: DayOccurrence, totalExpensesBeforeNextIncome: number): React.ReactNode => {
-  if (occurrence instanceof Today) {
-    return <TodayItem today={occurrence as Today} amount={totalExpensesBeforeNextIncome} />
+const getItemRenderer = (item: DayOccurrence | MonthSeparator, totalExpensesBeforeNextIncome: number): React.ReactNode => {
+  if (item instanceof Today) {
+    return <TodayItem today={item as Today} amount={totalExpensesBeforeNextIncome} />
   }
 
-  if (occurrence instanceof Expense) {
-    return <ExpenseItem expense={occurrence as Expense} />
+  if (item instanceof Expense) {
+    return <ExpenseItem expense={item as Expense} />
   }
 
-  if (occurrence instanceof Income) {
-    return <IncomeItem income={occurrence as Income} />
+  if (item instanceof Income) {
+    return <IncomeItem income={item as Income} />
   }
 
   if (item instanceof MonthSeparator) {
