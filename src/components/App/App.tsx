@@ -90,7 +90,9 @@ const getItemRenderer = (item: DayOccurrence | MonthSeparator, totalExpensesBefo
 
   if (item instanceof MonthSeparator) {
     const separator = item as MonthSeparator;
-    return <h1 style={{ background: 'yellow' }}>-- {separator.monthStartDay.date.toLocaleString('default', { month: 'long', year: 'numeric' })} --</h1>
+    return <h1 style={{ background: 'yellow', textAlign: 'center' }}>
+      -- {separator.monthStartDay.date.toLocaleString('default', { month: 'long', year: 'numeric' })} --
+    </h1>
   }
 
   return undefined;
