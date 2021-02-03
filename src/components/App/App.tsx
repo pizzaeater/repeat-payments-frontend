@@ -61,7 +61,7 @@ const App = () => {
 
   return (
     <div className={cn()}>
-      <ul>
+      <ul className={cn('list')}>
         {items.map((item, i) => (
           <li key={i}>
             {getItemRenderer(item, totalExpensesBeforeNextIncome)}
