@@ -18,7 +18,9 @@ const ExpenseItem: React.FC<Props> = ({ expense }) => (
       <CalendarDay date={expense.day.date} type="expense" inactive={expense.inactive} />
       <div className={cn('text')}>
         <p className={cn('name')}>{expense.name}</p>
-        <p className={cn('receiver')}>{expense.receiver}</p>
+        {expense.receiver &&
+          <p className={cn('receiver')}>{expense.receiver}</p>
+        }
       </div>
       <Amount value={expense.price} />
     </div>
