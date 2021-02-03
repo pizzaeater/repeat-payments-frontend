@@ -3,6 +3,7 @@ import { createCn } from 'bem-react-classname';
 import Expense from '../../models/Expense';
 import Panel from '../Panel';
 import CalendarDay from '../CalendarDay';
+import Amount from '../Amount';
 import './ExpenseItem.scss';
 
 const cn = createCn('ExpenseItem');
@@ -16,7 +17,7 @@ const ExpenseItem: React.FC<Props> = ({ expense }) => (
     <div className={cn({ inactive: !expense.isAccented })}>
       <CalendarDay date={expense.day.date} type="expense" inactive={!expense.isAccented} />
       <div className={cn('text')}>{expense.name}</div>
-      <div className={cn('amount')}>{expense.price.toFixed(2)} €</div>
+      <Amount value={expense.price} />
     </div>
   </Panel>
 );

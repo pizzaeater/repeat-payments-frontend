@@ -1,6 +1,7 @@
 .ExpenseItem {
   display: flex;
   align-items: center;
+  font-size: 4rem;
 }
 
 .ExpenseItem_inactive {
@@ -10,9 +11,4 @@
 .ExpenseItem__text {
   flex-grow: 1;
   padding: 0 2.8rem;
-  font-size: 4rem;
-}
-
-.ExpenseItem__amount {
-  font-size: 4rem;
 }
