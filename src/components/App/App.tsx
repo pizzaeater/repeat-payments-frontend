@@ -28,12 +28,12 @@ const App = () => {
 
     const expenses = repeatablesToDayOccurrencesInTimeRange(data.expenses, timeRange, (expense, day) => {
       const isAccented = doesTimeRangeIncludesDate(day.date, timeRangeBeforeNextIncome);
-      return new Expense(day, expense.name, expense.price, isAccented);
+      return new Expense(day, expense.name, expense.receiver, expense.price, isAccented);
     });
 
     const incomes = repeatablesToDayOccurrencesInTimeRange(data.incomes, timeRange, (income, day) => {
       const isAccented = doesTimeRangeIncludesDate(day.date, timeRangeBeforeNextIncome);
-      return new Income(day, income.name, isAccented);
+      return new Income(day, income.name, income.sender, isAccented);
     });
 
     setTotalExpensesBeforeNextIncome(
