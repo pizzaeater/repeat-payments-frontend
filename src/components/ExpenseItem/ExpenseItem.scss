@@ -11,4 +11,7 @@
 .ExpenseItem__text {
   flex-grow: 1;
   padding: 0 2.8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
