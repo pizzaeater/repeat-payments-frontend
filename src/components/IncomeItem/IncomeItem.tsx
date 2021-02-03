@@ -12,9 +12,9 @@ interface Props {
 }
 
 const IncomeItem: React.FC<Props> = ({ income }) => (
-  <Panel inactive={!income.isAccented}>
-    <div className={cn({ inactive: !income.isAccented })}>
-      <CalendarDay date={income.day.date} type="income" inactive={!income.isAccented} />
+  <Panel inactive={income.inactive}>
+    <div className={cn({ inactive: income.inactive })}>
+      <CalendarDay date={income.day.date} type="income" inactive={income.inactive} />
       <div className={cn('text')}>{income.name}</div>
     </div>
   </Panel>

@@ -6,12 +6,12 @@ export default class Income implements DayOccurrence {
   readonly day: Day;
   readonly name: string;
   readonly sender: string | undefined;
-  readonly isAccented: boolean;
+  readonly inactive: boolean;
 
-  constructor(day: Day, name: string, sender: string | undefined, isAccented: boolean) {
+  constructor(day: Day, name: string, sender: string | undefined, inactive: boolean) {
     this.day = day;
     this.name = name;
     this.sender = sender;
-    this.isAccented = isAccented;
+    this.inactive = inactive;
   }
 }

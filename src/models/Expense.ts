@@ -7,13 +7,13 @@ export default class Expense implements DayOccurrence {
   readonly name: string;
   readonly receiver: string | undefined;
   readonly price: number;
-  readonly isAccented: boolean;
+  readonly inactive: boolean;
 
-  constructor(day: Day, name: string, receiver: string | undefined, price: number, isAccented: boolean) {
+  constructor(day: Day, name: string, receiver: string | undefined, price: number, inactive: boolean) {
     this.day = day;
     this.name = name;
     this.receiver = receiver;
     this.price = price;
-    this.isAccented = isAccented;
+    this.inactive = inactive;
   }
 }
