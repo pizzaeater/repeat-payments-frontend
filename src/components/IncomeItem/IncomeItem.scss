@@ -1,4 +1,7 @@
+@import '../../styles/common';
+
 .IncomeItem {
+  height: 7rem;
   display: flex;
   align-items: center;
   font-size: 4rem;
@@ -11,7 +14,20 @@
 .IncomeItem__text {
   flex-grow: 1;
   padding: 0 2.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+}
+
+.IncomeItem__name {
+  @include textTrim;
+}
+
+.IncomeItem__sender {
+  margin-top: -0.5rem;
+  font-size: 2.5rem;
+  color: #808C8D;
+
+  @include textTrim;
 }

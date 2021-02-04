@@ -15,7 +15,12 @@ const IncomeItem: React.FC<Props> = ({ income }) => (
   <Panel inactive={income.inactive}>
     <div className={cn({ inactive: income.inactive })}>
       <CalendarDay date={income.day.date} type="income" inactive={income.inactive} />
-      <div className={cn('text')}>{income.name}</div>
+      <div className={cn('text')}>
+        <p className={cn('name')}>{income.name}</p>
+        {income.sender &&
+          <p className={cn('sender')}>{income.sender}</p>
+        }
+      </div>
     </div>
   </Panel>
 );
