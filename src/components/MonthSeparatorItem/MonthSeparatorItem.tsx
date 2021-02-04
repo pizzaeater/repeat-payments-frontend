@@ -6,12 +6,12 @@ import './MonthSeparatorItem.scss';
 const cn = createCn('MonthSeparatorItem');
 
 interface Props {
-  data: MonthSeparator
+  monthSeparator: MonthSeparator
 }
 
-const MonthSeparatorItem: React.FC<Props> = ({ data }) => (
+const MonthSeparatorItem: React.FC<Props> = ({ monthSeparator }) => (
   <div className={cn()}>
-    {data.monthStartDay.date.toLocaleString('default', { month: 'long', year: 'numeric' })}
+    {monthSeparator.monthStartDay.date.toLocaleString('default', { month: 'long', year: 'numeric' })}
   </div>
 );
 

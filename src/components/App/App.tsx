@@ -90,7 +90,7 @@ const getItemRenderer = (item: DayOccurrence | MonthSeparator, totalExpensesBefo
   }
 
   if (item instanceof MonthSeparator) {
-    return <MonthSeperatorItem data={item as MonthSeparator} />;
+    return <MonthSeperatorItem monthSeparator={item as MonthSeparator} />;
   }
 
   return undefined;
