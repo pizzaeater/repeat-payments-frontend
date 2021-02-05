@@ -8,3 +8,9 @@
   color: #808C8D;
   font-size: 2.5rem;
 }
+
+@media (max-width: 450px) {
+  .MonthSeparatorItem__year {
+    display: none;
+  }
+}
