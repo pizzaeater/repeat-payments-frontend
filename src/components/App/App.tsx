@@ -10,6 +10,7 @@ import { repeatablesToDayOccurrencesInTimeRange, repeatablesToFindNextDay } from
 import ExpenseItem from '../ExpenseItem';
 import IncomeItem from '../IncomeItem';
 import TodayItem from '../TodayItem';
+import MonthSeperatorItem from '../MonthSeparatorItem';
 import './App.scss';
 import data from '../../.local/data.json';
 
@@ -77,23 +78,19 @@ export default App;
 
 const getItemRenderer = (item: DayOccurrence | MonthSeparator, totalExpensesBeforeNextIncome: number): React.ReactNode => {
   if (item instanceof Today) {
-    return <TodayItem today={item as Today} amount={totalExpensesBeforeNextIncome} />
+    return <TodayItem today={item as Today} amount={totalExpensesBeforeNextIncome} />;
   }
 
   if (item instanceof Expense) {
-    return <ExpenseItem expense={item as Expense} />
+    return <ExpenseItem expense={item as Expense} />;
   }
 
   if (item instanceof Income) {
-    return <IncomeItem income={item as Income} />
+    return <IncomeItem income={item as Income} />;
   }
 
   if (item instanceof MonthSeparator) {
-    const separator = item as MonthSeparator;
-    // TODO: Create MonthSeparatorItem component.
-    return <h1 style={{ background: 'yellow', textAlign: 'center' }}>
-      -- {separator.monthStartDay.date.toLocaleString('default', { month: 'long', year: 'numeric' })} --
-    </h1>
+    return <MonthSeperatorItem monthSeparator={item as MonthSeparator} />;
   }
 
   return undefined;
