@@ -6,9 +6,10 @@ const cn = createCn('Panel');
 
 interface Props {
   inactive?: boolean
+  children: React.ReactNode
 }
 
-const Panel: React.FC<Props> = ({ inactive, children }) => (
+const Panel: React.FC<Props> = ({ inactive, children }: Props) => (
   <div className={cn({ inactive: inactive || false })}>
     {children}
   </div>

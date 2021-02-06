@@ -13,7 +13,7 @@ interface Props {
   amount: number
 }
 
-const IncomeItem: React.FC<Props> = ({ today, amount }) => (
+const IncomeItem: React.FC<Props> = ({ today, amount }: Props) => (
   <Panel>
     <div className={cn()}>
       <CalendarDay date={today.day.date} type="today" />

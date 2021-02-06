@@ -9,7 +9,7 @@ interface Props {
   monthSeparator: MonthSeparator
 }
 
-const MonthSeparatorItem: React.FC<Props> = ({ monthSeparator }) => {
+const MonthSeparatorItem: React.FC<Props> = ({ monthSeparator }: Props) => {
   const date = monthSeparator.monthStartDay.date;
 
   return (

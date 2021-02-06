@@ -12,7 +12,7 @@ interface Props {
   expense: Expense
 }
 
-const ExpenseItem: React.FC<Props> = ({ expense }) => (
+const ExpenseItem: React.FC<Props> = ({ expense }: Props) => (
   <Panel inactive={expense.inactive}>
     <div className={cn({ inactive: expense.inactive })}>
       <CalendarDay date={expense.day.date} type="expense" inactive={expense.inactive} />

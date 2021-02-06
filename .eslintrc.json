@@ -25,5 +25,22 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "max-len": [
+      "error",
+      {
+        "code": 120
+      }
+    ],
+    "@typescript-eslint/comma-dangle": [
+      "error",
+      {
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "objects": "always-multiline",
+        "arrays": "only-multiline",
+        "functions": "only-multiline"
+      }
+    ],
+    "@typescript-eslint/lines-between-class-members": "off"
   }
 }

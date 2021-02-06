@@ -8,7 +8,7 @@ interface Props {
   value: number
 }
 
-const Amount: React.FC<Props> = ({ value }) => {
+const Amount: React.FC<Props> = ({ value }: Props) => {
   const [ceils, cents] = value.toFixed(2).split('.');
 
   return (

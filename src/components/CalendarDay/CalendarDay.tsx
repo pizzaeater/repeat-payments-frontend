@@ -10,7 +10,7 @@ interface Props {
   inactive?: boolean
 }
 
-const CalendarDay: React.FC<Props> = ({ date, type, inactive }) => (
+const CalendarDay: React.FC<Props> = ({ date, type, inactive }: Props) => (
   <div className={cn()}>
     <div className={cn('month', { type: inactive ? 'inactive' : type })}>
       {date.toLocaleString('default', { month: 'short' }).toLocaleUpperCase()}
