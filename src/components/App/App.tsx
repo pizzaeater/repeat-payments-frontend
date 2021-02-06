@@ -7,10 +7,7 @@ import MonthSeparator from '../../models/MonthSeparator';
 import DayOccurrence, { sortDayOccurrencesChronologically } from '../../models/DayOccurrence';
 import { doesTimeRangeIncludesDate, extendTimeRange, timeRangeFromDays } from '../../models/TimeRange';
 import { repeatablesToDayOccurrencesInTimeRange, repeatablesToFindNextDay } from '../../models/Repeatable';
-import ExpenseItem from '../ExpenseItem';
-import IncomeItem from '../IncomeItem';
-import TodayItem from '../TodayItem';
-import MonthSeperatorItem from '../MonthSeparatorItem';
+import { getItemRenderer } from './getItemRenderer';
 import './App.scss';
 import data from '../../.local/data.json';
 
@@ -43,7 +40,7 @@ const App = () => {
         .reduce((total, expense) => total + expense.price, 0)
     );
 
-    const items = [today, ...expenses, ...incomes]
+    const itemsToSet = [today, ...expenses, ...incomes]
       .sort(sortDayOccurrencesChronologically)
       .flatMap((occurrence, i, arr) => {
         if (i === 0 || arr[i - 1].day.date.getMonth() === occurrence.day.date.getMonth()) {
@@ -53,7 +50,7 @@ const App = () => {
         return [new MonthSeparator(occurrence.day), occurrence];
       });
 
-    setItems(items);
+    setItems(itemsToSet);
   }, [weeksAfter]);
 
   const showMoreButtonClickHandler = () => {
@@ -75,23 +72,3 @@ const App = () => {
 };
 
 export default App;
-
-const getItemRenderer = (item: DayOccurrence | MonthSeparator, totalExpensesBeforeNextIncome: number): React.ReactNode => {
-  if (item instanceof Today) {
-    return <TodayItem today={item as Today} amount={totalExpensesBeforeNextIncome} />;
-  }
-
-  if (item instanceof Expense) {
-    return <ExpenseItem expense={item as Expense} />;
-  }
-
-  if (item instanceof Income) {
-    return <IncomeItem income={item as Income} />;
-  }
-
-  if (item instanceof MonthSeparator) {
-    return <MonthSeperatorItem monthSeparator={item as MonthSeparator} />;
-  }
-
-  return undefined;
-};
