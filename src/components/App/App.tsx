@@ -69,7 +69,7 @@ const App = () => {
           </li>
         ))}
       </ul>
-      <button onClick={showMoreButtonClickHandler}>Show 1 week more...</button>
+      <button type="button" onClick={showMoreButtonClickHandler}>Show 1 week more...</button>
     </div>
   );
 };

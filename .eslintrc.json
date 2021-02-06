@@ -31,6 +31,15 @@
         "code": 120
       }
     ],
+    "operator-linebreak": [
+      "error",
+      "before",
+      {
+        "overrides": {
+          "&&": "ignore"
+        }
+      }
+    ],
     "@typescript-eslint/comma-dangle": [
       "error",
       {
@@ -41,6 +50,12 @@
         "functions": "only-multiline"
       }
     ],
-    "@typescript-eslint/lines-between-class-members": "off"
+    "@typescript-eslint/lines-between-class-members": "off",
+    "react/require-default-props": [
+      "error",
+      {
+        "ignoreFunctionalComponents": true
+      }
+    ]
   }
 }

@@ -10,12 +10,17 @@ interface Props {
 }
 
 const MonthSeparatorItem: React.FC<Props> = ({ monthSeparator }: Props) => {
-  const date = monthSeparator.monthStartDay.date;
+  const { date } = monthSeparator.monthStartDay;
 
   return (
     <div className={cn()}>
-      <span className={cn('month')}>{date.toLocaleString('default', { month: 'long' })}</span>
-      <span className={cn('year')}>&nbsp;{date.toLocaleString('default', { year: 'numeric' })}</span>
+      <span className={cn('month')}>
+        {date.toLocaleString('default', { month: 'long' })}
+      </span>
+      <span className={cn('year')}>
+        &nbsp;
+        {date.toLocaleString('default', { year: 'numeric' })}
+      </span>
     </div>
   );
 };

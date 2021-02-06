@@ -17,7 +17,8 @@ const IncomeItem: React.FC<Props> = ({ income }: Props) => (
       <CalendarDay date={income.day.date} type="income" inactive={income.inactive} />
       <div className={cn('text')}>
         <p className={cn('name')}>{income.name}</p>
-        {income.sender &&
+        {
+          income.sender &&
           <p className={cn('sender')}>{income.sender}</p>
         }
       </div>

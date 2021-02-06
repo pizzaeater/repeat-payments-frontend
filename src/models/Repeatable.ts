@@ -50,6 +50,5 @@ export const repeatablesToFindNextDay = (repeatables: Repeatable[], sinceDay: Da
   [...Array(2)] // Look for 2 years
     .map((_, i): number => sinceDay.date.getFullYear() + i)
     .flatMap((year): Day[] => [...repeatables.flatMap((repeatable) => [...repeatableToDaysInYear(repeatable, year)])])
-    .filter((day): boolean => day.date.getTime() >= sinceDay.date.getTime())
-    [0]
+    .filter((day): boolean => day.date.getTime() >= sinceDay.date.getTime())[0]
 );
