@@ -1,10 +1,11 @@
 import React from 'react';
 import { createCn } from 'bem-react-classname';
+import Identifiable from '../../models/Identifiable';
 import Today from '../../models/Today';
 import Expense from '../../models/Expense';
 import Income from '../../models/Income';
 import MonthSeparator from '../../models/MonthSeparator';
-import DayOccurrence, { sortDayOccurrencesChronologically } from '../../models/DayOccurrence';
+import { sortDayOccurrencesChronologically } from '../../models/DayOccurrence';
 import { doesTimeRangeIncludesDate, extendTimeRange, timeRangeFromDays } from '../../models/TimeRange';
 import { repeatablesToDayOccurrencesInTimeRange, repeatablesToFindNextDay } from '../../models/Repeatable';
 import { getItemRenderer } from './getItemRenderer';
@@ -13,8 +14,8 @@ import data from '../../.local/data.json';
 
 const cn = createCn('App');
 
-const App = () => {
-  const [items, setItems] = React.useState<(DayOccurrence | MonthSeparator)[]>([]);
+const App: React.FC = () => {
+  const [items, setItems] = React.useState<(Identifiable)[]>([]);
   const [totalExpensesBeforeNextIncome, setTotalExpensesBeforeNextIncome] = React.useState<number>(0);
   const [weeksAfter, setWeeksAfter] = React.useState<number>(1);
 
@@ -60,8 +61,8 @@ const App = () => {
   return (
     <div className={cn()}>
       <ul className={cn('list')}>
-        {items.map((item, i) => (
-          <li key={i}>
+        {items.map((item) => (
+          <li key={item.id}>
             {getItemRenderer(item, totalExpensesBeforeNextIncome)}
           </li>
         ))}
