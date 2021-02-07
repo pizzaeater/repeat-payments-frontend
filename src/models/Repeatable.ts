@@ -8,7 +8,7 @@ export default interface Repeatable {
   startMonthInYear: number
 }
 
-export const validateRepeatable = (repeatable: Repeatable) => {
+export const validateRepeatable = (repeatable: Repeatable): void => {
   if (12 % repeatable.timesPerYear !== 0) {
     throw new Error(`Field "timesPerYear" (${repeatable.timesPerYear}) should be synced with months.`);
   }
