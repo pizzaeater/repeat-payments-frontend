@@ -41,7 +41,7 @@ const App: React.FC = () => {
         .reduce((total, expense) => total + expense.price, 0)
     );
 
-    const itemsToSet = [today, ...expenses, ...incomes]
+    const newItems = [today, ...expenses, ...incomes]
       .sort(sortDayOccurrencesChronologically)
       .flatMap((occurrence, i, arr) => {
         if (i === 0 || arr[i - 1].day.date.getMonth() === occurrence.day.date.getMonth()) {
@@ -51,7 +51,7 @@ const App: React.FC = () => {
         return [new MonthSeparator(occurrence.day), occurrence];
       });
 
-    setItems(itemsToSet);
+    setItems(newItems);
   }, [weeksAfter]);
 
   const showMoreButtonClickHandler = () => {
