@@ -40,6 +40,12 @@
         }
       }
     ],
+    "object-curly-newline": [
+      "error",
+      {
+        "ImportDeclaration": "never"
+      }
+    ],
     "import/prefer-default-export": [
       "off"
     ],
