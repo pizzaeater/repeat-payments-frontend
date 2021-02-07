@@ -9,12 +9,12 @@ interface Props {
 }
 
 const Amount: React.FC<Props> = ({ value }: Props) => {
-  const [ceils, cents] = value.toFixed(2).split('.');
+  const [main, fractional] = value.toFixed(2).split('.');
 
   return (
     <div className={cn()}>
-      <div>{ceils}</div>
-      <div className={cn('cents')}>{cents}</div>
+      <div>{main}</div>
+      <div className={cn('fractional')}>{fractional}</div>
       <div className={cn('currency')}>€</div>
     </div>
   );
