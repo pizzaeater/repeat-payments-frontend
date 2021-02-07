@@ -1,4 +1,4 @@
-import { timeRangeFromDates, doesTimeRangeIncludesDate, extendTimeRange, timeRangeFromDays } from '../models/TimeRange';
+import { doesTimeRangeIncludesDate, extendTimeRange, timeRangeFromDates, timeRangeFromDays } from '../models/TimeRange';
 import Day from '../models/Day';
 
 test('time range from dates', () => {
