@@ -13,10 +13,10 @@ interface Props {
 const CalendarDay: React.FC<Props> = ({ date, type, inactive }: Props) => (
   <div className={cn()}>
     <div className={cn('month', { type: inactive ? 'inactive' : type })}>
-      {date.toLocaleString('default', { month: 'short' }).toLocaleUpperCase()}
+      <span>{date.toLocaleString('default', { month: 'short' }).toLocaleUpperCase()}</span>
     </div>
     <div className={cn('day', { inactive: inactive || false })}>
-      {date.getDate()}
+      <span>{date.getDate()}</span>
     </div>
   </div>
 );

@@ -1,3 +1,8 @@
+@mixin textBaselineFix {
+  position: relative;
+  top: -0.05em;
+}
+
 @mixin textTrim {
   overflow: hidden;
   text-overflow: ellipsis;

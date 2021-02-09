@@ -12,5 +12,6 @@
   flex-grow: 1;
   padding: 0 2.8rem;
 
+  @include textBaselineFix;
   @include textTrim;
 }

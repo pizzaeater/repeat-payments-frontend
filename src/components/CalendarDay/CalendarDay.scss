@@ -1,3 +1,5 @@
+@import '../../styles/common';
+
 .CalendarDay {
   flex-shrink: 0;
   width: 7rem;
@@ -10,6 +12,7 @@
 }
 
 .CalendarDay__month {
+  flex-shrink: 0;
   height: 2.5rem;
   display: flex;
   align-items: center;
@@ -18,7 +21,11 @@
   color: white;
   font-size: 2rem;
   font-weight: normal;
-  line-height: 0;
+  overflow: hidden;
+
+  > :first-child {
+    @include textBaselineFix;
+  }
 }
 
 .CalendarDay__month_type_today {
@@ -46,7 +53,11 @@
   color: black;
   font-size: 4rem;
   font-weight: normal;
-  line-height: 0;
+  overflow: hidden;
+
+  > :first-child {
+    @include textBaselineFix;
+  }
 }
 
 .CalendarDay__day_inactive {
