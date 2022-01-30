@@ -29,7 +29,7 @@
     "node-sass": "^4.14.1"
   },
   "scripts": {
-    "start": "BROWSER=none react-scripts start",
+    "start": "PORT=7742 BROWSER=none react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -17,7 +17,7 @@ const cn = createCn('App');
 const App: React.FC = () => {
   const [items, setItems] = React.useState<(Identifiable)[]>([]);
   const [totalExpensesBeforeNextIncome, setTotalExpensesBeforeNextIncome] = React.useState<number>(0);
-  const [weeksAfter, setWeeksAfter] = React.useState<number>(1);
+  const [weeksAfter, setWeeksAfter] = React.useState<number>(50);
 
   React.useEffect(() => {
     const today = new Today();
