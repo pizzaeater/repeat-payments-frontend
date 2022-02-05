@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react';
+import Expense from '../models/Expense';
 import { CLIENT_ID } from '../.local/env';
 
 // Array of API discovery doc URLs for APIs used by the quickstart
@@ -60,11 +62,18 @@ export const useGoogleApiConnect = (): [boolean, () => void] => {
   }];
 };
 
-export const useGoogleCalendarExport = (): () => void => {
+const encodeDate = (date: Date): string => [
+  date.getFullYear(),
+  ('00' + (date.getMonth() + 1)).slice(-2), // eslint-disable-line prefer-template
+  ('00' + date.getDate()).slice(-2) // eslint-disable-line prefer-template
+].join('-');
+
+type A = (_: Expense[]) => void;
+export const useGoogleCalendarExport = (): A => {
   console.log('>>> useGoogleCalendarExport');
 
   // TODO: useCallback?
-  return async () => {
+  return async (expenses: Expense[]) => {
     const insertCalendarResponse = await gapi.client.request({
       method: 'post',
       path: 'calendar/v3/calendars',
@@ -74,25 +83,28 @@ export const useGoogleCalendarExport = (): () => void => {
     const calendarId = JSON.parse(insertCalendarResponse.body).id;
     console.log('calendarId', calendarId);
 
-    const insertEventResponse = await gapi.client.request({
-      method: 'post',
-      path: `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events`,
-      body: {
-        summary: 'Hi from Evgeny',
-        transparency: 'transparent',
-        start: { date: '2022-02-06' },
-        end: { date: '2022-02-06' },
-      },
+    // @ts-ignore
+    const batch: gapi.client.HttpBatch = gapi.client.newBatch();
+    // TODO: Add to declare?
+
+    expenses.forEach((expense) => {
+      const formattedDay = encodeDate(expense.day.date);
+
+      const insertEventRequest = gapi.client.request({
+        method: 'post',
+        path: `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events`,
+        body: {
+          summary: `${expense.name} ${expense.price}`,
+          transparency: 'transparent',
+          start: { date: formattedDay },
+          end: { date: formattedDay },
+        },
+      });
+      batch.add(insertEventRequest);
     });
 
-    console.log('insertEventResponse', insertEventResponse);
-
-    // gapi.client.request({
-    //   method: 'get',
-    //   path: 'calendar/v3/users/me/calendarList',
-    // })
-    //   .then((res) => {
-    //     console.log('calendarList', res);
-    //   });
+    batch.execute((res) => {
+      console.log('batch res', res);
+    });
   };
 };

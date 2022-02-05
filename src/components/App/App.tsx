@@ -16,9 +16,10 @@ import data from '../../.local/data.json';
 const cn = createCn('App');
 
 const App: React.FC = () => {
+  const [weeksAfter, setWeeksAfter] = React.useState<number>(2);
+  const [exp, setExp] = React.useState<Expense[]>([]);
   const [items, setItems] = React.useState<(Identifiable)[]>([]);
   const [totalExpensesBeforeNextIncome, setTotalExpensesBeforeNextIncome] = React.useState<number>(0);
-  const [weeksAfter, setWeeksAfter] = React.useState<number>(50);
   const googleApiLoaded = useGoogleApi();
   const [googleApiConnected, googleApiConnect] = useGoogleApiConnect();
   const exportToCalendar = useGoogleCalendarExport();
@@ -56,6 +57,7 @@ const App: React.FC = () => {
       });
 
     setItems(newItems);
+    setExp(expenses); // TODO: Migrate to Zustand?
   }, [weeksAfter]);
 
   const showMoreButtonClickHandler = () => {
@@ -69,7 +71,7 @@ const App: React.FC = () => {
           {googleApiConnected && (
             <>
               <h2>Connected!</h2>
-              <button type="button" onClick={exportToCalendar}>Export</button>
+              <button type="button" onClick={() => exportToCalendar(exp)}>Export</button>
             </>
           )}
           {!googleApiConnected && (
