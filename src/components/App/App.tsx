@@ -9,6 +9,7 @@ import { sortDayOccurrencesChronologically } from '../../models/DayOccurrence';
 import { doesTimeRangeIncludesDate, extendTimeRange, timeRangeFromDays } from '../../models/TimeRange';
 import { repeatablesToDayOccurrencesInTimeRange, repeatablesToFindNextDay } from '../../models/Repeatable';
 import { getItemRenderer } from './getItemRenderer';
+import { useGoogleApi, useGoogleApiConnect, useGoogleCalendarExport } from '../../hooks/useGoogleApi';
 import './App.scss';
 import data from '../../.local/data.json';
 
@@ -18,6 +19,9 @@ const App: React.FC = () => {
   const [items, setItems] = React.useState<(Identifiable)[]>([]);
   const [totalExpensesBeforeNextIncome, setTotalExpensesBeforeNextIncome] = React.useState<number>(0);
   const [weeksAfter, setWeeksAfter] = React.useState<number>(50);
+  const googleApiLoaded = useGoogleApi();
+  const [googleApiConnected, googleApiConnect] = useGoogleApiConnect();
+  const exportToCalendar = useGoogleCalendarExport();
 
   React.useEffect(() => {
     const today = new Today();
@@ -60,6 +64,20 @@ const App: React.FC = () => {
 
   return (
     <div className={cn()}>
+      {googleApiLoaded && (
+        <>
+          {googleApiConnected && (
+            <>
+              <h2>Connected!</h2>
+              <button type="button" onClick={exportToCalendar}>Export</button>
+            </>
+          )}
+          {!googleApiConnected && (
+            <button type="button" onClick={googleApiConnect}>Connect to Google Calendar</button>
+          )}
+        </>
+      )}
+
       <ul className={cn('list')}>
         {items.map((item) => (
           <li key={item.id}>
